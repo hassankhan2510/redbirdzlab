@@ -249,24 +249,111 @@ body {
 }
 
 
-/* ===== Immersive Hero ===== */
+/* ===== UNREAL HERO ===== */
 .hero-unreal {
-    height: 100vh;
-    min-height: 800px;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     position: relative;
     z-index: 2;
-    padding: 0 5vw;
-    perspective: 1000px;
-    /* 3D perspective setup */
+    padding: 8rem 5vw 4rem;
+    overflow: hidden;
 }
 
-/* JS will target this to gently tilt the entire hero text block */
-.hero-3d-container {
-    transform-style: preserve-3d;
-    max-width: 1000px;
-    will-change: transform;
+/* Floating ambient orbs */
+.hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--accent-red);
+    opacity: 0.08;
+    top: -10%;
+    right: 10%;
+    animation: orbFloat1 15s ease-in-out infinite;
+}
+
+.orb-2 {
+    width: 300px;
+    height: 300px;
+    background: #ff6b6b;
+    opacity: 0.05;
+    bottom: 10%;
+    left: -5%;
+    animation: orbFloat2 20s ease-in-out infinite;
+}
+
+.orb-3 {
+    width: 200px;
+    height: 200px;
+    background: #ffffff;
+    opacity: 0.03;
+    top: 40%;
+    left: 50%;
+    animation: orbFloat3 12s ease-in-out infinite;
+}
+
+@keyframes orbFloat1 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -40px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.95);
+    }
+}
+
+@keyframes orbFloat2 {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(60px, -30px);
+    }
+}
+
+@keyframes orbFloat3 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(-40px, 40px) scale(1.2);
+    }
+}
+
+/* Hero Split Layout */
+.hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-text-side {
+    position: relative;
 }
 
 .badge-premium {
@@ -295,6 +382,127 @@ body {
 .hero-actions {
     display: flex;
     gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+/* Hero Animated Stats */
+.hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: white;
+}
+
+.stat-suffix {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent-red);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-sec);
+    margin-top: 0.3rem;
+}
+
+.hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border-glass);
+}
+
+/* Hero 3D Side */
+.hero-3d-side {
+    position: relative;
+    min-height: 500px;
+}
+
+#hero-3d-scene {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Floating Tech Badges */
+.floating-badge {
+    position: absolute;
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    background: rgba(15, 15, 18, 0.7);
+    border: 1px solid var(--border-glass);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-sec);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 10;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.floating-badge i {
+    color: var(--accent-red);
+    font-size: 0.9rem;
+}
+
+.fb-1 {
+    top: 8%;
+    right: 5%;
+    animation: badgeFloat 6s ease-in-out infinite;
+}
+
+.fb-2 {
+    top: 35%;
+    left: -5%;
+    animation: badgeFloat 8s ease-in-out infinite 1s;
+}
+
+.fb-3 {
+    bottom: 20%;
+    right: 0;
+    animation: badgeFloat 7s ease-in-out infinite 0.5s;
+}
+
+.fb-4 {
+    bottom: 5%;
+    left: 10%;
+    animation: badgeFloat 9s ease-in-out infinite 2s;
+}
+
+@keyframes badgeFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
 }
 
 .scroll-tracker {
@@ -714,6 +922,27 @@ body {
 
 /* Responsive */
 @media (max-width: 1024px) {
+    .hero-split {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .hero-3d-side {
+        min-height: 400px;
+    }
+
+    .floating-badge {
+        display: none;
+    }
+
     .bento-grid {
         grid-template-columns: 1fr 1fr;
     }

@@ -205,25 +205,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* --- 5. THREE.JS INTERACTIVE GLOBE --- */
+    /* --- 5. THREE.JS INTERACTIVE GLOBE (Bento) --- */
     const globeContainer = document.getElementById('three-globe-container');
     if (globeContainer && typeof THREE !== 'undefined') {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(45, globeContainer.clientWidth / globeContainer.clientHeight, 0.1, 1000);
-        camera.position.z = 400; // zoom level
+        camera.position.z = 400;
 
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(globeContainer.clientWidth, globeContainer.clientHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
-        // Clean any existing canvas to prevent dups on hot reload
         globeContainer.innerHTML = '';
         globeContainer.appendChild(renderer.domElement);
 
-        // Particle Globe Geometry
-        // Create an interesting dot-sphere
-        const geometry = new THREE.SphereGeometry(150, 48, 48); // Radius, Segments
+        const geometry = new THREE.SphereGeometry(150, 48, 48);
         const material = new THREE.PointsMaterial({
-            color: 0xE63946, // RedBirdz crimson
+            color: 0xE63946,
             size: 1.5,
             transparent: true,
             opacity: 0.9,
@@ -233,7 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const particles = new THREE.Points(geometry, material);
         scene.add(particles);
 
-        // Inner core glow sphere
         const coreGeo = new THREE.SphereGeometry(145, 32, 32);
         const coreMat = new THREE.MeshBasicMaterial({
             color: 0xE63946,
@@ -244,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const core = new THREE.Mesh(coreGeo, coreMat);
         scene.add(core);
 
-        // Interaction state
         let targetX = 0;
         let targetY = 0;
         let windowHalfX = window.innerWidth / 2;
@@ -255,39 +250,164 @@ document.addEventListener('DOMContentLoaded', () => {
             targetY = (event.clientY - windowHalfY) * 0.002;
         });
 
-        // Animation Loop
         const clock = new THREE.Clock();
         const animateGlobe = function () {
             requestAnimationFrame(animateGlobe);
-
             const elapsedTime = clock.getElapsedTime();
-
-            // Auto rotation + mouse tracking
             particles.rotation.y += 0.002;
             core.rotation.y += 0.002;
-
-            // Gentle easing towards mouse perspective
             particles.rotation.x += 0.05 * (targetY - particles.rotation.x);
             particles.rotation.y += 0.05 * (targetX - particles.rotation.y);
-
-            // Subtle breathing effect on the core
             core.scale.setScalar(1 + Math.sin(elapsedTime * 2) * 0.02);
-
             renderer.render(scene, camera);
         };
-
         animateGlobe();
 
-        // Responsive Resize
         window.addEventListener('resize', () => {
             if (!globeContainer) return;
             windowHalfX = window.innerWidth / 2;
             windowHalfY = window.innerHeight / 2;
-
             camera.aspect = globeContainer.clientWidth / globeContainer.clientHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(globeContainer.clientWidth, globeContainer.clientHeight);
         });
     }
+
+    /* --- 6. THREE.JS HERO 3D SCENE (DNA Helix) --- */
+    const heroScene = document.getElementById('hero-3d-scene');
+    if (heroScene && typeof THREE !== 'undefined') {
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, heroScene.clientWidth / heroScene.clientHeight, 0.1, 2000);
+        camera.position.z = 500;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(heroScene.clientWidth, heroScene.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        heroScene.innerHTML = '';
+        heroScene.appendChild(renderer.domElement);
+
+        // Create double helix of particles
+        const particleCount = 1200;
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+
+        const colorRed = new THREE.Color(0xE63946);
+        const colorWhite = new THREE.Color(0xffffff);
+
+        for (let i = 0; i < particleCount; i++) {
+            const t = (i / particleCount) * Math.PI * 8; // 4 full turns
+            const y = (i / particleCount) * 600 - 300; // Span y-axis
+
+            // Helix strand 1
+            if (i % 2 === 0) {
+                positions[i * 3] = Math.cos(t) * 120;
+                positions[i * 3 + 1] = y;
+                positions[i * 3 + 2] = Math.sin(t) * 120;
+                colorRed.toArray(colors, i * 3);
+            } else {
+                // Helix strand 2 (offset by PI)
+                positions[i * 3] = Math.cos(t + Math.PI) * 120;
+                positions[i * 3 + 1] = y;
+                positions[i * 3 + 2] = Math.sin(t + Math.PI) * 120;
+                colorWhite.toArray(colors, i * 3);
+            }
+        }
+
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const material = new THREE.PointsMaterial({
+            size: 3,
+            transparent: true,
+            opacity: 0.85,
+            blending: THREE.AdditiveBlending,
+            vertexColors: true
+        });
+
+        const helix = new THREE.Points(geometry, material);
+        scene.add(helix);
+
+        // Add ambient ring particles
+        const ringGeo = new THREE.TorusGeometry(200, 1, 16, 100);
+        const ringMat = new THREE.PointsMaterial({
+            color: 0xE63946,
+            size: 1.5,
+            transparent: true,
+            opacity: 0.3,
+            blending: THREE.AdditiveBlending
+        });
+        const ring = new THREE.Points(ringGeo, ringMat);
+        ring.rotation.x = Math.PI / 2;
+        scene.add(ring);
+
+        // Second ring
+        const ring2 = ring.clone();
+        ring2.rotation.x = Math.PI / 3;
+        ring2.rotation.z = Math.PI / 4;
+        scene.add(ring2);
+
+        let heroTargetX = 0;
+        let heroTargetY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            heroTargetX = (event.clientX / window.innerWidth - 0.5) * 0.5;
+            heroTargetY = (event.clientY / window.innerHeight - 0.5) * 0.5;
+        });
+
+        const heroClock = new THREE.Clock();
+        const animateHero = function () {
+            requestAnimationFrame(animateHero);
+            const elapsed = heroClock.getElapsedTime();
+
+            helix.rotation.y += 0.005;
+            helix.rotation.x = Math.sin(elapsed * 0.3) * 0.1;
+
+            ring.rotation.z += 0.002;
+            ring2.rotation.z -= 0.003;
+
+            // Mouse-responsive camera
+            camera.position.x += (heroTargetX * 100 - camera.position.x) * 0.05;
+            camera.position.y += (-heroTargetY * 100 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        };
+        animateHero();
+
+        window.addEventListener('resize', () => {
+            if (!heroScene) return;
+            camera.aspect = heroScene.clientWidth / heroScene.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(heroScene.clientWidth, heroScene.clientHeight);
+        });
+    }
+
+    /* --- 7. ANIMATED STAT COUNTERS --- */
+    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+    const animateCounter = (el) => {
+        const target = parseInt(el.getAttribute('data-target'));
+        const duration = 2000; // ms
+        const startTime = performance.now();
+
+        const update = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(target * eased);
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                el.textContent = target;
+            }
+        };
+        requestAnimationFrame(update);
+    };
+
+    // Trigger counters when hero becomes visible
+    setTimeout(() => {
+        statNumbers.forEach(el => animateCounter(el));
+    }, 800);
 
 });
