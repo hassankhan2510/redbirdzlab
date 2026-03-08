@@ -8,6 +8,23 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    /* --- 0. HAMBURGER MENU --- */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+
     /* --- 1. NEURAL CANVAS BACKGROUND --- */
     const canvas = document.getElementById('neural-canvas');
     if (canvas) {
@@ -210,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (globeContainer && typeof THREE !== 'undefined') {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(45, globeContainer.clientWidth / globeContainer.clientHeight, 0.1, 1000);
-        camera.position.z = 400;
+        camera.position.z = 500;
 
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(globeContainer.clientWidth, globeContainer.clientHeight);
@@ -278,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroScene && typeof THREE !== 'undefined') {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(60, heroScene.clientWidth / heroScene.clientHeight, 0.1, 2000);
-        camera.position.z = 500;
+        camera.position.z = 600;
 
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(heroScene.clientWidth, heroScene.clientHeight);

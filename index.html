@@ -16,6 +16,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="icon" type="image/jpeg" href="logo_square.jpg">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -33,12 +34,15 @@
                 <img src="logo_square.jpg" alt="RedBirdz Lab" class="logo-img">
                 <span class="brand-text">RedBirdz <span class="glow-text">Lab</span></span>
             </a>
-            <div class="nav-links desktop-only">
+            <div class="nav-links" id="nav-links">
                 <a href="#vision" class="hover-underline">Mission</a>
                 <a href="#architecture" class="hover-underline">Our Work</a>
                 <a href="#join" class="hover-underline">Join Us</a>
             </div>
-            <a href="#join" class="btn-premium nav-cta">Get Involved</a>
+            <a href="#join" class="btn-premium nav-cta desktop-only">Get Involved</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
@@ -66,21 +70,21 @@
                     <a href="#architecture" class="btn-ghost massive">Explore Our Work</a>
                 </div>
 
-                <!-- Animated Counters Row -->
+                <!-- Building Phase Stats -->
                 <div class="hero-stats slide-up delay-3">
                     <div class="hero-stat">
-                        <span class="stat-number" data-target="230">0</span><span class="stat-suffix">M+</span>
-                        <span class="stat-label">People Reached</span>
-                    </div>
-                    <div class="hero-stat-divider"></div>
-                    <div class="hero-stat">
                         <span class="stat-number" data-target="15">0</span><span class="stat-suffix">+</span>
-                        <span class="stat-label">Languages</span>
+                        <span class="stat-label">Languages Targeted</span>
                     </div>
                     <div class="hero-stat-divider"></div>
                     <div class="hero-stat">
                         <span class="stat-number" data-target="4">0</span>
                         <span class="stat-label">Focus Areas</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="stat-number" data-target="1">0</span><span class="stat-suffix">st</span>
+                        <span class="stat-label">In Pakistan</span>
                     </div>
                 </div>
             </div>
