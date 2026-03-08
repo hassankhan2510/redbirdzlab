@@ -205,4 +205,89 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /* --- 5. THREE.JS INTERACTIVE GLOBE --- */
+    const globeContainer = document.getElementById('three-globe-container');
+    if (globeContainer && typeof THREE !== 'undefined') {
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, globeContainer.clientWidth / globeContainer.clientHeight, 0.1, 1000);
+        camera.position.z = 400; // zoom level
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(globeContainer.clientWidth, globeContainer.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        // Clean any existing canvas to prevent dups on hot reload
+        globeContainer.innerHTML = '';
+        globeContainer.appendChild(renderer.domElement);
+
+        // Particle Globe Geometry
+        // Create an interesting dot-sphere
+        const geometry = new THREE.SphereGeometry(150, 48, 48); // Radius, Segments
+        const material = new THREE.PointsMaterial({
+            color: 0xE63946, // RedBirdz crimson
+            size: 1.5,
+            transparent: true,
+            opacity: 0.9,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        // Inner core glow sphere
+        const coreGeo = new THREE.SphereGeometry(145, 32, 32);
+        const coreMat = new THREE.MeshBasicMaterial({
+            color: 0xE63946,
+            transparent: true,
+            opacity: 0.08,
+            blending: THREE.AdditiveBlending
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        scene.add(core);
+
+        // Interaction state
+        let targetX = 0;
+        let targetY = 0;
+        let windowHalfX = window.innerWidth / 2;
+        let windowHalfY = window.innerHeight / 2;
+
+        document.addEventListener('mousemove', (event) => {
+            targetX = (event.clientX - windowHalfX) * 0.002;
+            targetY = (event.clientY - windowHalfY) * 0.002;
+        });
+
+        // Animation Loop
+        const clock = new THREE.Clock();
+        const animateGlobe = function () {
+            requestAnimationFrame(animateGlobe);
+
+            const elapsedTime = clock.getElapsedTime();
+
+            // Auto rotation + mouse tracking
+            particles.rotation.y += 0.002;
+            core.rotation.y += 0.002;
+
+            // Gentle easing towards mouse perspective
+            particles.rotation.x += 0.05 * (targetY - particles.rotation.x);
+            particles.rotation.y += 0.05 * (targetX - particles.rotation.y);
+
+            // Subtle breathing effect on the core
+            core.scale.setScalar(1 + Math.sin(elapsedTime * 2) * 0.02);
+
+            renderer.render(scene, camera);
+        };
+
+        animateGlobe();
+
+        // Responsive Resize
+        window.addEventListener('resize', () => {
+            if (!globeContainer) return;
+            windowHalfX = window.innerWidth / 2;
+            windowHalfY = window.innerHeight / 2;
+
+            camera.aspect = globeContainer.clientWidth / globeContainer.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(globeContainer.clientWidth, globeContainer.clientHeight);
+        });
+    }
+
 });

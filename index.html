@@ -15,6 +15,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -45,18 +46,18 @@
     <section class="hero-unreal" id="hero">
         <div class="hero-3d-container">
             <div class="hero-content" id="hero-tilt">
-                <div class="badge-premium slide-up">System Online <span class="pulse-dot"></span></div>
+                <div class="badge-premium slide-up">The Future is Local <span class="pulse-dot"></span></div>
                 <h1 class="headline-massive slide-up delay-1">
-                    Teaching AI to <br>
-                    <span class="gradient-text gradient-red">Think Like Us.</span>
+                    Giving Pakistan a Voice in the <br>
+                    <span class="gradient-text gradient-red">AI Revolution.</span>
                 </h1>
                 <p class="subtitle-elegant slide-up delay-2">
-                    Pakistan's first deep-tech infrastructure annotating regional data at scale. We aren't just adapting
-                    global models; we are building the neurological foundation for local artificial intelligence.
+                    We are building the first dedicated infrastructure to teach Artificial Intelligence our own
+                    languages, accents, and culture. No coding required—just pure knowledge.
                 </p>
                 <div class="hero-actions slide-up delay-3">
-                    <a href="#architecture" class="btn-premium massive">Explore Platform</a>
-                    <a href="#vision" class="btn-ghost massive">Our Protocol</a>
+                    <a href="#vision" class="btn-premium massive">Discover Our Mission</a>
+                    <a href="#architecture" class="btn-ghost massive">Explore Our Work</a>
                 </div>
             </div>
         </div>
@@ -78,22 +79,27 @@
                         <div class="bento-bg bg-blur bg-mission"></div>
                         <div class="bento-content">
                             <i class="fas fa-language bento-icon"></i>
-                            <h3 class="bento-title">Language Infrastructure</h3>
-                            <p class="bento-desc">Standard LLMs hallucinate local contexts. By annotating millions of
-                                conversational nodes, we inject profound cultural and linguistic fluency directly into
-                                the core matrix.</p>
+                            <h3 class="bento-title">Why We Exist</h3>
+                            <p class="bento-desc">The world is racing ahead with AI, but our languages are being left
+                                behind. RedBirdz Lab was founded to put Pakistan on the global AI map, creating the
+                                foundation so tomorrow's models understand us deeply.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Vertical Span -->
                 <div class="bento-card span-1 row-2 3d-card fade-in-scroll delay-1">
-                    <div class="bento-inner">
-                        <div class="bento-bg bg-map"></div>
-                        <div class="bento-content bottom-aligned">
+                    <div class="bento-inner" style="padding: 0; overflow: hidden; position: relative;">
+                        <!-- THREE.JS GLOBE CONTAINER -->
+                        <div id="three-globe-container"
+                            style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0;"></div>
+
+                        <div class="bento-content bottom-aligned"
+                            style="padding: 2rem; position: relative; z-index: 2; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%); pointer-events: none;">
                             <div class="stat-huge">230M+</div>
-                            <h3 class="bento-title">Voices Unlocked</h3>
-                            <p class="bento-desc">Mapping the uncharted cognitive territory of South Asia.</p>
+                            <h3 class="bento-title">Why Pakistan?</h3>
+                            <p class="bento-desc">One of the largest untapped frontiers, featuring vast diversity in
+                                dialects and colloquialisms.</p>
                         </div>
                     </div>
                 </div>
@@ -127,9 +133,9 @@
         <div class="container bounds-large relative">
             <div class="glow-orb red-orb pos-top-right"></div>
 
-            <h2 class="section-title fade-in-scroll">Data Operations Architecture</h2>
-            <p class="section-subtitle fade-in-scroll">The end-to-end proprietary protocol converting raw analog noise
-                into pure intelligent structural data.</p>
+            <h2 class="section-title fade-in-scroll">Teaching AI to Understand Us</h2>
+            <p class="section-subtitle fade-in-scroll">We break down human communication into simple pieces that AI can
+                digest and learn from.</p>
 
             <div class="card-track 3d-track">
 
@@ -139,11 +145,11 @@
                     <div class="card-content">
                         <div class="card-header">
                             <span class="card-num">01</span>
-                            <h4>Ingestion</h4>
+                            <h4>Reading & Writing</h4>
                         </div>
                         <img src="img_reading.png" alt="Ingest" class="card-img">
-                        <p>Massive scale scraping protocols isolating colloquial Urdu text and audio sets from
-                            unstructured public domains.</p>
+                        <p>We train AI to read our books, news, and everyday conversations. We teach it the grammar, the
+                            meaning behind sentences, and how to answer questions correctly.</p>
                     </div>
                 </div>
 
