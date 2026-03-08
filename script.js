@@ -53,10 +53,10 @@ function init() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
     particles = [];
-    
+
     // Adjust particle count based on screen size
     const particleCount = width > 768 ? 80 : 40;
-    
+
     for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
     }
@@ -112,11 +112,11 @@ function connectParticles() {
 
 function animate() {
     ctx.clearRect(0, 0, width, height);
-    
+
     for (let i = 0; i < particles.length; i++) {
         particles[i].update();
     }
-    
+
     connectParticles();
     requestAnimationFrame(animate);
 }
@@ -131,12 +131,12 @@ window.addEventListener('mousemove', (e) => {
 // Push particles away from mouse
 function interactWithMouse() {
     if (mouse.x === null) return;
-    
+
     for (let i = 0; i < particles.length; i++) {
         const dx = mouse.x - particles[i].x;
         const dy = mouse.y - particles[i].y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (distance < 150) {
             ctx.beginPath();
             ctx.strokeStyle = `rgba(255, 255, 255, ${0.2 * (1 - distance / 150)})`;
@@ -144,12 +144,12 @@ function interactWithMouse() {
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(mouse.x, mouse.y);
             ctx.stroke();
-            
+
             // Subtle push effect
             const force = (150 - distance) / 150;
             const px = dx / distance;
             const py = dy / distance;
-            
+
             particles[i].x -= px * force * 1.5;
             particles[i].y -= py * force * 1.5;
         }
@@ -158,13 +158,13 @@ function interactWithMouse() {
 
 // Wrap animate to include mouse interaction
 const originalAnimate = animate;
-animate = function() {
+animate = function () {
     ctx.clearRect(0, 0, width, height);
-    
+
     for (let i = 0; i < particles.length; i++) {
         particles[i].update();
     }
-    
+
     connectParticles();
     interactWithMouse();
     requestAnimationFrame(animate);
@@ -187,11 +187,23 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const headerOffset = 80;
             const elementPosition = target.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-  
+
             window.scrollTo({
                 top: offsetPosition,
                 behavior: "smooth"
             });
         }
     });
+});
+
+// Premium High-Tech Card Hover Effects
+document.getElementById('focus').addEventListener('mousemove', e => {
+    for (const card of document.querySelectorAll('.feature-card')) {
+        const rect = card.getBoundingClientRect(),
+            x = e.clientX - rect.left,
+            y = e.clientY - rect.top;
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+    }
 });

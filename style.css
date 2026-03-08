@@ -37,6 +37,14 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
+    /* High-tech ambient background pattern */
+    background-image:
+        radial-gradient(circle at 15% 50%, rgba(230, 57, 70, 0.05), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(230, 57, 70, 0.05), transparent 25%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    background-attachment: fixed;
 }
 
 /* ===== Typography ===== */
@@ -230,6 +238,7 @@ h6 {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #060913 100%);
 }
 
 #hero-canvas {
@@ -280,6 +289,7 @@ h6 {
     font-size: 4.5rem;
     margin-bottom: 1.5rem;
     animation: fadeInUp 1s ease 0.2s both;
+    text-shadow: 0 0 40px rgba(230, 57, 70, 0.3);
 }
 
 .hero-subtitle {
@@ -289,6 +299,7 @@ h6 {
     max-width: 600px;
     margin-inline: auto;
     animation: fadeInUp 1s ease 0.4s both;
+    line-height: 1.8;
 }
 
 .hero-cta {
@@ -381,19 +392,21 @@ h6 {
 /* Glass Card / Quote */
 .glow-box {
     position: relative;
-    padding: 2px;
-    background: linear-gradient(135deg, var(--border-accent), transparent, var(--border-glass));
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(230, 57, 70, 0.6), transparent 60%, rgba(255, 255, 255, 0.1));
     border-radius: 24px;
-    box-shadow: 0 0 40px var(--accent-glow);
+    box-shadow: 0 0 60px rgba(230, 57, 70, 0.15), inset 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .glass-card {
-    background: rgba(15, 22, 38, 0.8);
-    backdrop-filter: blur(20px);
-    border-radius: 22px;
+    background: rgba(10, 15, 28, 0.85);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 23px;
     padding: 4rem 3rem;
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .quote-icon {
@@ -410,6 +423,7 @@ h6 {
     z-index: 2;
     background: linear-gradient(to right, #fff, #aaa);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -430,41 +444,48 @@ h6 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    position: relative;
+    /* For interactive mouse tracker effect */
 }
 
+/* Base card structure */
 .feature-card {
-    background: var(--bg-card);
+    background: rgba(15, 22, 38, 0.7);
     border: 1px solid var(--border-glass);
     border-radius: 20px;
     padding: 3rem 2rem;
-    transition: var(--transition);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    /* Keep content above glows */
 }
 
-.feature-card::before {
+/* Card Mouse tracking glow via JS setup */
+.feature-card::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
+            rgba(230, 57, 70, 0.08),
+            transparent 40%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.feature-card:hover::after {
+    opacity: 1;
 }
 
 .feature-card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    background: var(--bg-card-hover);
-}
-
-.feature-card:hover::before {
-    transform: translateX(100%);
+    transform: translateY(-8px);
+    border-color: rgba(230, 57, 70, 0.4);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 20px rgba(230, 57, 70, 0.1);
 }
 
 .card-img-wrapper {
@@ -596,6 +617,7 @@ h6 {
     position: relative;
     text-align: center;
     overflow: hidden;
+    background: radial-gradient(circle at top, rgba(161, 30, 41, 0.1) 0%, #060913 70%);
 }
 
 .cta-background {
@@ -605,7 +627,9 @@ h6 {
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(230, 57, 70, 0.15) 0%, transparent 60%);
+    background-image:
+        radial-gradient(circle at center, rgba(230, 57, 70, 0.05) 0%, transparent 60%),
+        repeating-linear-gradient(45deg, rgba(230, 57, 70, 0.02) 0px, rgba(230, 57, 70, 0.02) 1px, transparent 1px, transparent 10px);
     z-index: 0;
 }
 
