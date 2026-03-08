@@ -270,6 +270,21 @@ h6 {
     padding: 0 2rem;
 }
 
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content.text-left {
+    text-align: left;
+    max-width: 100%;
+    padding: 0;
+}
+
 .hero-badge {
     display: inline-block;
     padding: 0.5rem 1rem;
@@ -302,11 +317,37 @@ h6 {
     line-height: 1.8;
 }
 
+.hero-content.text-left .hero-subtitle {
+    margin-inline: 0;
+}
+
 .hero-cta {
     display: flex;
     gap: 1rem;
     justify-content: center;
     animation: fadeInUp 1s ease 0.6s both;
+}
+
+.hero-content.text-left .hero-cta {
+    justify-content: flex-start;
+}
+
+.hero-visual {
+    position: relative;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(-135deg, rgba(230, 57, 70, 0.5), transparent 70%);
+    box-shadow: 0 0 50px rgba(230, 57, 70, 0.15);
+    animation: fadeInUp 1s ease 0.5s both;
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    display: block;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .scroll-indicator {
@@ -835,6 +876,24 @@ h6 {
 
 /* ===== Responsive Design ===== */
 @media (max-width: 992px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        padding-top: 6rem;
+        text-align: center;
+    }
+
+    .hero-content.text-left {
+        text-align: center;
+    }
+
+    .hero-content.text-left .hero-subtitle {
+        margin-inline: auto;
+    }
+
+    .hero-content.text-left .hero-cta {
+        justify-content: center;
+    }
+
     .hero-title {
         font-size: 3.5rem;
     }
