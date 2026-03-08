@@ -96,11 +96,11 @@ body {
 /* ===== Typography - Massive & Beautiful ===== */
 .headline-massive {
     font-family: var(--font-display);
-    font-size: clamp(4rem, 8vw, 7rem);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 700;
-    line-height: 1.05;
+    line-height: 1.08;
     letter-spacing: -0.04em;
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
 }
 
 .section-title {
@@ -112,12 +112,12 @@ body {
 }
 
 .subtitle-elegant {
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
     color: var(--text-sec);
-    max-width: 700px;
+    max-width: 600px;
     font-weight: 300;
     line-height: 1.6;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 .gradient-text {
@@ -214,19 +214,19 @@ body {
 }
 
 .btn-premium.massive {
-    padding: 1.2rem 2.5rem;
-    font-size: 1.1rem;
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
 }
 
 .btn-ghost {
     background: transparent;
     color: white;
     border: 1px solid var(--border-glass);
-    padding: 1.2rem 2.5rem;
+    padding: 0.9rem 2rem;
     border-radius: 100px;
     text-decoration: none;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: all 0.3s ease;
     display: inline-block;
     backdrop-filter: blur(10px);
@@ -256,7 +256,7 @@ body {
     align-items: center;
     position: relative;
     z-index: 2;
-    padding: 8rem 5vw 4rem;
+    padding: 5rem 5vw 2rem;
     overflow: hidden;
 }
 
@@ -360,13 +360,13 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.5rem 1.2rem;
+    padding: 0.4rem 1rem;
     border-radius: 100px;
     background: var(--bg-surface);
     border: 1px solid var(--border-glass);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 500;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.2rem;
     backdrop-filter: blur(10px);
 }
 
@@ -381,19 +381,19 @@ body {
 
 .hero-actions {
     display: flex;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Hero Animated Stats */
 .hero-stats {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    padding: 1.5rem 2rem;
+    gap: 1.5rem;
+    padding: 1rem 1.5rem;
     background: var(--bg-surface);
     border: 1px solid var(--border-glass);
-    border-radius: 20px;
+    border-radius: 16px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 }
@@ -405,7 +405,7 @@ body {
 
 .stat-number {
     font-family: var(--font-display);
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
     line-height: 1;
     color: white;
@@ -413,7 +413,7 @@ body {
 
 .stat-suffix {
     font-family: var(--font-display);
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
     line-height: 1;
     color: var(--accent-red);
