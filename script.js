@@ -1,209 +1,208 @@
-// Navbar Scroll Effect
-const navbar = document.getElementById('navbar');
+/**
+ * ULTIMATE PREMIUM INTERACTIVITY SCRIPT
+ * 1. WebGL/Canvas Neural Network (Interactive Background)
+ * 2. 3D Hover Perspectives (Bento & Cards)
+ * 3. Intersection Observers (Scroll Reveals)
+ * 4. Navbar Scroll State
+ */
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
+document.addEventListener('DOMContentLoaded', () => {
 
-// Mobile menu placeholder (can be expanded later)
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-mobileMenuBtn.addEventListener('click', () => {
-    alert('Mobile menu clicked - Expand implementation here if needed');
-});
+    /* --- 1. NEURAL CANVAS BACKGROUND --- */
+    const canvas = document.getElementById('neural-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height, particles;
 
-// Scroll Reveal Animations
-const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale');
+        // Settings
+        const config = {
+            particleCount: 150,
+            connectionDistance: 120,
+            baseSpeed: 0.5,
+            mouseRadius: 150,
+            color: 'rgba(230, 57, 70, 0.4)' // Accent Red
+        };
 
-const revealCallback = (entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            // observer.unobserve(entry.target); // Uncomment to animate only once
-        } else {
-            entry.target.classList.remove('active'); // Animate every time it comes into view (more dynamic)
-        }
-    });
-};
+        let mouse = { x: -1000, y: -1000 };
 
-const revealOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -50px 0px"
-};
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * config.baseSpeed;
+                this.vy = (Math.random() - 0.5) * config.baseSpeed;
+                this.radius = Math.random() * 1.5 + 0.5;
+            }
 
-const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+            update() {
+                // Bounds checking
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
 
-revealElements.forEach(el => {
-    revealObserver.observe(el);
-});
+                // Mouse interaction (repel)
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
 
-// Custom Canvas Node Animation for Hero Background
-const canvas = document.getElementById('hero-canvas');
-const ctx = canvas.getContext('2d');
+                if (distance < config.mouseRadius) {
+                    const forceDirectionX = dx / distance;
+                    const forceDirectionY = dy / distance;
+                    const force = (config.mouseRadius - distance) / config.mouseRadius;
+                    const repel = force * 2;
+                    this.x -= forceDirectionX * repel;
+                    this.y -= forceDirectionY * repel;
+                }
 
-let width, height, particles;
+                this.x += this.vx;
+                this.y += this.vy;
+            }
 
-// RedBirdz thematic colors
-const colors = ['rgba(230, 57, 70, 0.6)', 'rgba(255, 255, 255, 0.2)', 'rgba(161, 30, 41, 0.4)'];
-
-function init() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-    particles = [];
-
-    // Adjust particle count based on screen size
-    const particleCount = width > 768 ? 80 : 40;
-
-    for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-    }
-}
-
-class Particle {
-    constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 2 + 0.5;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-    }
-
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-    }
-
-    update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Bounce off edges
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-
-        this.draw();
-    }
-}
-
-function connectParticles() {
-    for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < 120) {
+            draw() {
                 ctx.beginPath();
-                ctx.strokeStyle = `rgba(230, 57, 70, ${1 - distance / 120})`;
-                ctx.lineWidth = 0.5;
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.stroke();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = config.color;
+                ctx.fill();
             }
         }
-    }
-}
 
-function animate() {
-    ctx.clearRect(0, 0, width, height);
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = [];
 
-    for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-    }
-
-    connectParticles();
-    requestAnimationFrame(animate);
-}
-
-// Mouse interaction with canvas
-let mouse = { x: null, y: null };
-window.addEventListener('mousemove', (e) => {
-    mouse.x = e.x;
-    mouse.y = e.y;
-});
-
-// Push particles away from mouse
-function interactWithMouse() {
-    if (mouse.x === null) return;
-
-    for (let i = 0; i < particles.length; i++) {
-        const dx = mouse.x - particles[i].x;
-        const dy = mouse.y - particles[i].y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 150) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.2 * (1 - distance / 150)})`;
-            ctx.lineWidth = 1;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.stroke();
-
-            // Subtle push effect
-            const force = (150 - distance) / 150;
-            const px = dx / distance;
-            const py = dy / distance;
-
-            particles[i].x -= px * force * 1.5;
-            particles[i].y -= py * force * 1.5;
+            // Generate particles
+            const count = window.innerWidth < 768 ? 50 : config.particleCount;
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
         }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                // Draw connections
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < config.connectionDistance) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(230, 57, 70, ${0.15 * (1 - distance / config.connectionDistance)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+
+        // Canvas Setup & Resize
+        initCanvas();
+        animateCanvas();
+
+        window.addEventListener('resize', () => {
+            initCanvas();
+        });
+
+        // Mouse tracking for canvas
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        window.addEventListener('mouseout', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
     }
-}
 
-// Wrap animate to include mouse interaction
-const originalAnimate = animate;
-animate = function () {
-    ctx.clearRect(0, 0, width, height);
+    /* --- 2. 3D HOVER PERSPECTIVES --- */
+    const tiltContainers = document.querySelectorAll('.bento-inner, .glass-3d-card');
 
-    for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-    }
+    tiltContainers.forEach(container => {
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left; // x position within the element
+            const y = e.clientY - rect.top; // y position within the element
 
-    connectParticles();
-    interactWithMouse();
-    requestAnimationFrame(animate);
-}
+            // Calculate rotation values. Max rotation is roughly 10deg.
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-window.addEventListener('resize', () => {
-    init();
-});
+            const rotateX = ((y - centerY) / centerY) * -10;
+            const rotateY = ((x - centerX) / centerX) * 10;
 
-// Start Canvas Animation
-init();
-animate();
+            container.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const headerOffset = 80;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            // Update faux glare on .glass-3d-card
+            const glare = container.querySelector('.card-glare');
+            if (glare) {
+                const percentX = (x / rect.width) * 100;
+                const percentY = (y / rect.height) * 100;
+                glare.style.setProperty('--mouseX', `${percentX}%`);
+                glare.style.setProperty('--mouseY', `${percentY}%`);
+            }
+        });
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
+        container.addEventListener('mouseleave', () => {
+            container.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        });
+    });
+
+    /* --- 3. SCROLL REVEAL OBSERVERS --- */
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add tiny delay for staggering if needed, but the css has transition-delay classes
+                entry.target.classList.add('visible');
+                // Optional: stop observing once revealed
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll('.slide-up, .fade-in-scroll');
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Force visible on hero immediately
+    setTimeout(() => {
+        document.querySelectorAll('#hero .slide-up').forEach(el => el.classList.add('visible'));
+    }, 100);
+
+    /* --- 4. NAVBAR SCROLL STATE --- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
     });
-});
 
-// Premium High-Tech Card Hover Effects
-document.getElementById('focus').addEventListener('mousemove', e => {
-    for (const card of document.querySelectorAll('.feature-card')) {
-        const rect = card.getBoundingClientRect(),
-            x = e.clientX - rect.left,
-            y = e.clientY - rect.top;
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80, // offset for navbar
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-    }
 });

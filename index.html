@@ -1,303 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark-theme">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RedBirdz Lab | Building Pakistan's AI Future</title>
-    <meta name="description" content="Bringing Urdu and regional languages to Artificial Intelligence.">
+    <title>RedBirdz Lab | The Frontier of Local AI</title>
+    <meta name="description"
+        content="Building the foundational infrastructure for artificial intelligence in Pakistan.">
 
-    <!-- Google Fonts -->
+    <!-- Fonts: Inter & Space Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- The Neural Canvas Background -->
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- Grain Overlay for cinematic texture -->
+    <div class="grain-overlay"></div>
+
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav id="navbar" class="nav-ultra">
         <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="logo_square.jpg" alt="RedBirdz Lab Logo" id="nav-logo">
-                <span>RedBirdz <span class="text-accent">Lab</span></span>
+            <a href="#" class="brand-logo">
+                <img src="logo_square.jpg" alt="RedBirdz Lab" class="logo-img">
+                <span class="brand-text">RedBirdz <span class="glow-text">Lab</span></span>
             </a>
-            <div class="nav-links">
-                <a href="#mission">Our Vision</a>
-                <a href="#focus">What We Do</a>
-                <a href="#process">How It Works</a>
-                <a href="#join" class="btn btn-primary">Join the Movement</a>
+            <div class="nav-links desktop-only">
+                <a href="#vision" class="hover-underline">Vision</a>
+                <a href="#architecture" class="hover-underline">Architecture</a>
+                <a href="#impact" class="hover-underline">Impact</a>
             </div>
-            <div class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
+            <a href="#join" class="btn-premium nav-cta">Init System</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <canvas id="hero-canvas"></canvas>
-        <div class="container hero-grid">
-            <div class="hero-content text-left">
-                <div class="hero-badge">The Future is Local</div>
-                <h1 class="hero-title">Giving Pakistan a Voice in the <span class="text-gradient">AI Revolution</span>
+    <!-- Immersive Cinematic Hero -->
+    <section class="hero-unreal" id="hero">
+        <div class="hero-3d-container">
+            <div class="hero-content" id="hero-tilt">
+                <div class="badge-premium slide-up">System Online <span class="pulse-dot"></span></div>
+                <h1 class="headline-massive slide-up delay-1">
+                    Teaching AI to <br>
+                    <span class="gradient-text gradient-red">Think Like Us.</span>
                 </h1>
-                <p class="hero-subtitle">We are building the first dedicated infrastructure to teach Artificial
-                    Intelligence
-                    our own languages, accents, and culture. No coding required—just pure knowledge.</p>
-                <div class="hero-cta">
-                    <a href="#mission" class="btn btn-primary btn-lg">Discover Our Mission</a>
-                    <a href="#focus" class="btn btn-outline btn-lg">Explore Our Work</a>
+                <p class="subtitle-elegant slide-up delay-2">
+                    Pakistan's first deep-tech infrastructure annotating regional data at scale. We aren't just adapting
+                    global models; we are building the neurological foundation for local artificial intelligence.
+                </p>
+                <div class="hero-actions slide-up delay-3">
+                    <a href="#architecture" class="btn-premium massive">Explore Platform</a>
+                    <a href="#vision" class="btn-ghost massive">Our Protocol</a>
                 </div>
             </div>
-            <div class="hero-visual reveal-scale">
-                <img src="img_hero.png" alt="Advanced Startup AI Visual" class="hero-img glow-border">
-            </div>
         </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
+        <div class="scroll-tracker">
+            <div class="tracker-line"></div>
         </div>
-    </header>
+    </section>
 
-    <!-- Mission Section -->
-    <section id="mission" class="section">
-        <div class="container">
-            <div class="mission-grid">
-                <div class="mission-text" class="reveal-left">
-                    <h2 class="section-title">Why We Exist</h2>
-                    <p class="lead">The world is racing ahead with AI, but our languages are being left behind.</p>
-                    <p>RedBirdz Lab was founded with a single, powerful vision: <strong>To put Pakistan on the global AI
-                            map.</strong> We are creating the foundation so that tomorrow's AI understands Urdu, our
-                        regional dialects, and the unique way we communicate.</p>
-                    <p>We don't just build technology. We build the <em>knowledge</em> that teaches technology how to
-                        represent us.</p>
-                    <div class="stats-container">
-                        <div class="stat-box">
-                            <i class="fas fa-language"></i>
-                            <h3>Local Languages</h3>
-                            <p>Preserving our heritage</p>
-                        </div>
-                        <div class="stat-box">
-                            <i class="fas fa-globe-asia"></i>
-                            <h3>Global Impact</h3>
-                            <p>World-class infrastructure</p>
+    <!-- Vision Bento Box Section -->
+    <section id="vision" class="section-padding">
+        <div class="container bounds-large">
+            <h2 class="section-title fade-in-scroll">Building the Neurological Base</h2>
+
+            <div class="bento-grid">
+
+                <!-- Main Bento Span -->
+                <div class="bento-card span-2 3d-card fade-in-scroll">
+                    <div class="bento-inner">
+                        <div class="bento-bg bg-blur bg-mission"></div>
+                        <div class="bento-content">
+                            <i class="fas fa-language bento-icon"></i>
+                            <h3 class="bento-title">Language Infrastructure</h3>
+                            <p class="bento-desc">Standard LLMs hallucinate local contexts. By annotating millions of
+                                conversational nodes, we inject profound cultural and linguistic fluency directly into
+                                the core matrix.</p>
                         </div>
                     </div>
                 </div>
-                <div class="mission-visual" class="reveal-right">
-                    <div class="mission-image-wrapper">
-                        <img src="img_mission.png" alt="Advanced AI Infrastructure Interface"
-                            class="mission-img glow-border">
+
+                <!-- Vertical Span -->
+                <div class="bento-card span-1 row-2 3d-card fade-in-scroll delay-1">
+                    <div class="bento-inner">
+                        <div class="bento-bg bg-map"></div>
+                        <div class="bento-content bottom-aligned">
+                            <div class="stat-huge">230M+</div>
+                            <h3 class="bento-title">Voices Unlocked</h3>
+                            <p class="bento-desc">Mapping the uncharted cognitive territory of South Asia.</p>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Square Bento -->
+                <div class="bento-card span-1 3d-card fade-in-scroll">
+                    <div class="bento-inner">
+                        <div class="bento-content center">
+                            <i class="fas fa-brain bento-icon giant glow"></i>
+                            <h3 class="bento-title">Human-in-the-Loop</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Square Bento -->
+                <div class="bento-card span-1 3d-card fade-in-scroll delay-1">
+                    <div class="bento-inner text-centered">
+                        <div class="bento-content">
+                            <h3 class="bento-title gradient-red">Zero-Shot</h3>
+                            <p class="bento-desc">Local Accuracy</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Focus Areas (What We Do) -->
-    <section id="focus" class="section bg-darker">
-        <div class="container">
-            <div class="section-header center">
-                <h2 class="section-title">Teaching AI to Understand Us</h2>
-                <p class="section-subtitle">We break down human communication into simple pieces that AI can digest and
-                    learn from.</p>
-            </div>
+    <!-- Architecture / Operations (3D Cards) -->
+    <section id="architecture" class="section-padding dark-void">
+        <div class="container bounds-large relative">
+            <div class="glow-orb red-orb pos-top-right"></div>
 
-            <div class="cards-grid">
-                <!-- Reading & Writing -->
-                <div class="feature-card reveal-up" style="transition-delay: 0.1s;">
-                    <div class="card-img-wrapper">
-                        <img src="img_reading.png" alt="Reading & Writing AI" class="feature-img">
+            <h2 class="section-title fade-in-scroll">Data Operations Architecture</h2>
+            <p class="section-subtitle fade-in-scroll">The end-to-end proprietary protocol converting raw analog noise
+                into pure intelligent structural data.</p>
+
+            <div class="card-track 3d-track">
+
+                <!-- Card 1 -->
+                <div class="glass-3d-card fade-in-scroll">
+                    <div class="card-glare"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <span class="card-num">01</span>
+                            <h4>Ingestion</h4>
+                        </div>
+                        <img src="img_reading.png" alt="Ingest" class="card-img">
+                        <p>Massive scale scraping protocols isolating colloquial Urdu text and audio sets from
+                            unstructured public domains.</p>
                     </div>
-                    <h3>Reading & Writing</h3>
-                    <p>We train AI to read our books, news, and everyday conversations. We teach it the grammar, the
-                        meaning behind sentences, and how to answer questions correctly in Urdu.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check text-accent"></i> Understanding human emotion</li>
-                        <li><i class="fas fa-check text-accent"></i> Reading news and books</li>
-                        <li><i class="fas fa-check text-accent"></i> Answering questions naturally</li>
-                    </ul>
                 </div>
 
-                <!-- Listening & Speaking -->
-                <div class="feature-card reveal-up" style="transition-delay: 0.2s;">
-                    <div class="card-img-wrapper">
-                        <img src="img_listening.png" alt="Listening & Speaking AI" class="feature-img">
+                <!-- Card 2 -->
+                <div class="glass-3d-card fade-in-scroll delay-1">
+                    <div class="card-glare"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <span class="card-num">02</span>
+                            <h4>Purification</h4>
+                        </div>
+                        <img src="img_process.png" alt="Clean" class="card-img">
+                        <p>Algorithmic sanitation ensuring high signal-to-noise ratio, stripping anomalies before human
+                            intervention.</p>
                     </div>
-                    <h3>Listening & Speaking</h3>
-                    <p>We help AI listen to our voices. By capturing public radio, TV archives, and local community
-                        voices, we teach it to understand urban, rural, and colloquial accents.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check text-accent"></i> Recognizing local dialects</li>
-                        <li><i class="fas fa-check text-accent"></i> Understanding daily speech</li>
-                        <li><i class="fas fa-check text-accent"></i> Converting voice to text</li>
-                    </ul>
                 </div>
 
-                <!-- Seeing the World -->
-                <div class="feature-card reveal-up" style="transition-delay: 0.3s;">
-                    <div class="card-img-wrapper">
-                        <img src="img_vision.png" alt="Seeing the World AI" class="feature-img">
+                <!-- Card 3 -->
+                <div class="glass-3d-card fade-in-scroll delay-2">
+                    <div class="card-glare"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <span class="card-num gradient-red">03</span>
+                            <h4>Annotation</h4>
+                        </div>
+                        <img src="img_vision.png" alt="Annotate" class="card-img">
+                        <p>Precision tagging by local linguist experts, injecting ground-truth logic required for
+                            advanced reasoning tasks.</p>
                     </div>
-                    <h3>Seeing the World</h3>
-                    <p>We connect images of our local environment with Urdu descriptions. This allows AI to "see"
-                        Pakistan and describe it accurately, helping build better educational and accessibility tools.
-                    </p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check text-accent"></i> Local image libraries</li>
-                        <li><i class="fas fa-check text-accent"></i> Human-written descriptions</li>
-                        <li><i class="fas fa-check text-accent"></i> Visual understanding</li>
-                    </ul>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section id="process" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">The Journey of Knowledge</h2>
-                <p class="section-subtitle">How we transform everyday information into the fuel that powers Artificial
-                    Intelligence.</p>
-            </div>
-
-            <div class="process-grid">
-                <div class="process-timeline">
-                    <div class="timeline-item reveal-up">
-                        <div class="timeline-marker">1</div>
-                        <div class="timeline-content">
-                            <h3>Gathering the Information</h3>
-                            <p>We act like digital librarians, carefully collecting public information from news
-                                websites,
-                                public social media, and official records to build a vast library of our language.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item reveal-up">
-                        <div class="timeline-marker">2</div>
-                        <div class="timeline-content">
-                            <h3>Polishing and Cleaning</h3>
-                            <p>Raw internet data is messy. We filter out the junk—removing random links, fixing broken
-                                sentences, and ensuring only the highest quality information remains for the AI to learn
-                                from.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item reveal-up">
-                        <div class="timeline-marker">3</div>
-                        <div class="timeline-content">
-                            <h3>Human Expert Labeling</h3>
-                            <p>Our team of local experts carefully "tags" the information. We highlight grammar, point
-                                out
-                                important names, and explain the context so the AI truly understands what it's reading.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item reveal-up">
-                        <div class="timeline-marker"><i class="fas fa-rocket"></i></div>
-                        <div class="timeline-content">
-                            <h3>Ready for the AI Race</h3>
-                            <p>The final result is a perfectly structured, high-quality "textbook" that any AI model can
-                                use
-                                to become instantly fluent in Pakistan's languages.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="process-image-side reveal-right">
-                    <img src="img_process.png" alt="Futuristic Data Processing Flow" class="process-img glow-border">
-                </div>
-            </div>
+    <!-- Unmatched CTA Footer -->
+    <footer id="join" class="footer-ultra relative overflow-hidden">
+        <div class="cta-deep-bg">
+            <img src="img_cta_bg.png" alt="Deep Tech Background">
         </div>
-    </section>
+        <div class="container bounds-large relative z-10 footer-content">
+            <h2 class="headline-massive text-center fade-in-scroll">Connect to the API.</h2>
+            <p class="subtitle-elegant text-center mx-auto fade-in-scroll">Join the engineers, linguists, and
+                researchers building Pakistan's AI backbone.</p>
 
-    <!-- Why Pakistan Section -->
-    <section id="why-pakistan" class="section bg-darker">
-        <div class="container">
-            <div class="process-grid" style="direction: rtl;">
-                <div class="mission-text reveal-right" style="direction: ltr;">
-                    <h2 class="section-title">Why Pakistan?<br><span class="text-gradient">The Uncharted
-                            Territory</span></h2>
-                    <p class="lead">With over 230 million voices and dozens of unique regional dialects, Pakistan
-                        represents one of the largest untapped frontiers in global AI development.</p>
-                    <p>Standard language models lack the cultural context, the nuance, and the localized understanding
-                        that defines our region. By capturing and annotating this massive well of information, we aren't
-                        just adapting global AI for local use—we are fundamentally teaching the models to think like us.
-                    </p>
-                    <ul class="feature-list" style="margin-top: 2rem;">
-                        <li><i class="fas fa-arrow-right text-accent"></i> 6th largest population in the world</li>
-                        <li><i class="fas fa-arrow-right text-accent"></i> Huge diversity in dialects and colloquialisms
-                        </li>
-                        <li><i class="fas fa-arrow-right text-accent"></i> Massive gap in localized AI tooling</li>
-                    </ul>
-                </div>
-                <div class="process-image-side reveal-left" style="direction: ltr;">
-                    <img src="img_map.png" alt="High Tech Map of Pakistan" class="process-img glow-border">
-                </div>
+            <div class="cta-actions text-center fade-in-scroll">
+                <button class="btn-premium massive glow-heavy">Establish Connection</button>
             </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section id="join" class="cta-section">
-        <div class="cta-background-img" style="background-image: url('img_cta_bg.png');"></div>
-        <div class="cta-background"></div>
-        <div class="container">
-            <div class="cta-content reveal-scale">
-                <h2>Be Part of the Future</h2>
-                <p>We are looking for passionate individuals, linguists, and supporters to help us build the ultimate
-                    vocabulary for tomorrow's AI.</p>
-                <div class="cta-buttons">
-                    <button class="btn btn-primary btn-lg CTA-btn">Join Our Community</button>
-                    <button class="btn btn-outline btn-lg CTA-btn">Partner With Us</button>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="footer-divider"></div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <img src="logo_square.jpg" alt="RedBirdz Lab Logo"
-                            style="width: 40px; height: auto; border-radius: 8px;">
-                        <h3>RedBirdz <span class="text-accent">Lab</span></h3>
-                    </div>
-                    <p>Building Pakistan's first data infrastructure to power the next generation of localized
-                        Artificial Intelligence.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#mission">Our Vision</a></li>
-                        <li><a href="#focus">What We Do</a></li>
-                        <li><a href="#process">How It Works</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <h4>Connect With Us</h4>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/company/redbirdz-lab/" target="_blank"
-                            rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-            </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 RedBirdz Lab. All rights reserved.</p>
+                <div class="brand-group">
+                    <img src="logo_square.jpg" alt="Logo" class="logo-small">
+                    <span>RedBirdz Lab &copy; 2026</span>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/redbirdz-lab/" target="_blank" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
